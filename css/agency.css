@@ -596,12 +596,19 @@ header_5 .intro-text .intro-heading {
         line-height: 40px;
         margin-bottom: 20px
     }
-    header_5 .intro-heading-large{
+    header_5 .intro-heading-large {
         font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
         text-transform: uppercase;
         font-weight: 700;
-        font-size: 80px;
+        font-size: 32px;   /* font size for small screen */
         line-height: 40px;
+    }
+    
+    @media (min-width:500px) {
+        header_5 .intro-heading-large {
+            font-size: 80px;
+            line-height: 40px;
+        }
     }
     header_5 .intro-heading-welcome{
         font-family: Brush Script MT, Brush Script Std, cursive;
