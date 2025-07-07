@@ -71,7 +71,9 @@
                     <li class="">
                         <a class="page-scroll" href="#introduction">Intro</a>
                     </li>
-
+                    <li>
+                        <a class="page-scroll" href="#slides">Slides</a>
+                    </li>
 <!--                    <li>-->
 <!--                        <a class="page-scroll" href="#dates">Key Dates</a>-->
 <!--                    </li>-->
@@ -651,7 +653,77 @@
 
     </div>
 
-<section>
+<!-- Slides Section -->
+<section id="slides" class="bg-mid-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Tutorial Slides</h2>
+                <h3 class="section-subheading text-muted">Interactive PDF Viewer</h3>
+            </div>
+        </div>
+        
+        <!-- PDF Viewer Container -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pdf-viewer-container" style="background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;">
+                    <!-- PDF Controls -->
+                    <div class="pdf-controls" style="background: #f8f9fa; padding: 15px; border-radius: 8px 8px 0 0; border-bottom: 1px solid #dee2e6;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-primary" onclick="previousPage()">
+                                        <i class="fa fa-chevron-left"></i> Previous
+                                    </button>
+                                    <button type="button" class="btn btn-primary" onclick="nextPage()">
+                                        Next <i class="fa fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <span class="page-info" style="margin-left: 15px; font-weight: bold;">
+                                    Page <span id="currentPage">1</span> of <span id="totalPages">-</span>
+                                </span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-success" onclick="downloadPDF()">
+                                        <i class="fa fa-download"></i> Download PDF
+                                    </button>
+                                    <button type="button" class="btn btn-info" onclick="openFullscreen()">
+                                        <i class="fa fa-expand"></i> Fullscreen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PDF Embed -->
+                    <div class="pdf-embed-container" style="position: relative; height: 600px; overflow: hidden;">
+                        <iframe 
+                            id="pdfViewer"
+                            src="./files/MMTSA @ KDD 2025.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                            style="width: 100%; height: 100%; border: none; border-radius: 0 0 8px 8px;"
+                            onload="onPDFLoad()">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Info -->
+        <div class="row text-center" style="margin-top: 20px;">
+            <div class="col-md-12">
+                <p class="text-muted">
+                    <strong>File:</strong> MMTSA @ KDD 2025.pdf | 
+                    <strong>Size:</strong> ~13 MB | 
+                    <strong>Last updated:</strong> August 2025
+                </p>
+                <p class="text-muted">
+                    Use the navigation buttons above to browse through the slides, or download the complete PDF for offline viewing.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section id="papers" class="bg-mid-gray">
     <div class="container">
@@ -1030,6 +1102,78 @@
 
     </section-->
 
+
+    <!-- PDF Viewer JavaScript -->
+    <script>
+    // PDF Viewer JavaScript
+    let currentPage = 1;
+    let totalPages = 97;
+
+    function onPDFLoad() {
+        // This function will be called when PDF loads
+        // Note: Getting total pages from embedded PDF is limited by browser security
+        // We'll set a default or you can manually set the total pages
+        totalPages = 97; // Set this to your actual PDF page count
+        updatePageInfo();
+    }
+
+    function updatePageInfo() {
+        document.getElementById('currentPage').textContent = currentPage;
+        document.getElementById('totalPages').textContent = totalPages;
+    }
+
+    function previousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            const iframe = document.getElementById('pdfViewer');
+            iframe.src = `./files/MMTSA @ KDD 2025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+            updatePageInfo();
+        }
+    }
+
+    function nextPage() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            const iframe = document.getElementById('pdfViewer');
+            iframe.src = `./files/MMTSA @ KDD 2025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+            updatePageInfo();
+        }
+    }
+
+    function downloadPDF() {
+        const link = document.createElement('a');
+        link.href = './files/MMTSA @ KDD 2025.pdf';
+        link.download = 'MMTSA_KDD25_Tutorial.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function openFullscreen() {
+        const iframe = document.getElementById('pdfViewer');
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) {
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+            iframe.msRequestFullscreen();
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft') {
+            previousPage();
+        } else if (event.key === 'ArrowRight') {
+            nextPage();
+        }
+    });
+
+    // Initialize page info
+    document.addEventListener('DOMContentLoaded', function() {
+        updatePageInfo();
+    });
+    </script>
 
     <!-- jQuery -->
     <script src="./js/jquery.js"></script>
