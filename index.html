@@ -670,16 +670,8 @@
                     <div class="pdf-controls" style="background: #f8f9fa; padding: 15px; border-radius: 8px 8px 0 0; border-bottom: 1px solid #dee2e6;">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-primary" onclick="previousPage()">
-                                        <i class="fa fa-chevron-left"></i> Previous
-                                    </button>
-                                    <button type="button" class="btn btn-primary" onclick="nextPage()">
-                                        Next <i class="fa fa-chevron-right"></i>
-                                    </button>
-                                </div>
-                                <span class="page-info" style="margin-left: 15px; font-weight: bold;">
-                                    Page <span id="currentPage">1</span> of <span id="totalPages">-</span>
+                                <span class="page-info" style="font-weight: bold; font-size: 16px;">
+                                    Total Pages: <span id="totalPages">97</span>
                                 </span>
                             </div>
                             <div class="col-md-6 text-right">
@@ -699,7 +691,7 @@
                     <div class="pdf-embed-container" style="position: relative; height: 600px; overflow: hidden;">
                         <iframe 
                             id="pdfViewer"
-                            src="./files/MMTSA%20@%20KDD%202025.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                            src="./files/MMTSA%20@%20KDD%202025.pdf#toolbar=1&navpanes=1&scrollbar=1&view=FitH"
                             style="width: 100%; height: 100%; border: none; border-radius: 0 0 8px 8px;"
                             onload="onPDFLoad()">
                         </iframe>
@@ -1105,38 +1097,16 @@
     <!-- PDF Viewer JavaScript -->
     <script>
     // PDF Viewer JavaScript
-    let currentPage = 1;
     let totalPages = 97;
 
     function onPDFLoad() {
         // This function will be called when PDF loads
-        // Note: Getting total pages from embedded PDF is limited by browser security
-        // We'll set a default or you can manually set the total pages
         totalPages = 97; // Set this to your actual PDF page count
         updatePageInfo();
     }
 
     function updatePageInfo() {
-        document.getElementById('currentPage').textContent = currentPage;
         document.getElementById('totalPages').textContent = totalPages;
-    }
-
-    function previousPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            const iframe = document.getElementById('pdfViewer');
-            iframe.src = `./files/MMTSA%20@%20KDD%202025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
-            updatePageInfo();
-        }
-    }
-
-    function nextPage() {
-        if (currentPage < totalPages) {
-            currentPage++;
-            const iframe = document.getElementById('pdfViewer');
-            iframe.src = `./files/MMTSA%20@%20KDD%202025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
-            updatePageInfo();
-        }
     }
 
     function downloadPDF() {
@@ -1158,15 +1128,6 @@
             iframe.msRequestFullscreen();
         }
     }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowLeft') {
-            previousPage();
-        } else if (event.key === 'ArrowRight') {
-            nextPage();
-        }
-    });
 
     // Initialize page info
     document.addEventListener('DOMContentLoaded', function() {
