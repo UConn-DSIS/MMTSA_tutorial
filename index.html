@@ -659,7 +659,6 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Tutorial Slides</h2>
-                <h3 class="section-subheading text-muted">Interactive PDF Viewer</h3>
             </div>
         </div>
         
@@ -700,7 +699,7 @@
                     <div class="pdf-embed-container" style="position: relative; height: 600px; overflow: hidden;">
                         <iframe 
                             id="pdfViewer"
-                            src="./files/MMTSA @ KDD 2025.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                            src="./files/MMTSA%20@%20KDD%202025.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
                             style="width: 100%; height: 100%; border: none; border-radius: 0 0 8px 8px;"
                             onload="onPDFLoad()">
                         </iframe>
@@ -1126,7 +1125,7 @@
         if (currentPage > 1) {
             currentPage--;
             const iframe = document.getElementById('pdfViewer');
-            iframe.src = `./files/MMTSA @ KDD 2025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+            iframe.src = `./files/MMTSA%20@%20KDD%202025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
             updatePageInfo();
         }
     }
@@ -1135,7 +1134,7 @@
         if (currentPage < totalPages) {
             currentPage++;
             const iframe = document.getElementById('pdfViewer');
-            iframe.src = `./files/MMTSA @ KDD 2025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+            iframe.src = `./files/MMTSA%20@%20KDD%202025.pdf#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
             updatePageInfo();
         }
     }
