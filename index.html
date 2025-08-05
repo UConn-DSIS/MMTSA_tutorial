@@ -672,7 +672,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <span class="page-info" style="font-weight: bold; font-size: 16px;">
-                                    Total Pages: <span id="totalPages">97</span>
+                                    Total Pages: <span id="totalPages">128</span>
                                 </span>
                             </div>
                             <div class="col-md-6 text-right">
@@ -705,7 +705,7 @@
         <div class="row text-center" style="margin-top: 20px;">
             <div class="col-md-12">
                 <p class="text-muted">
-                    <strong>File:</strong> MMTSA @ KDD 2025.pdf | 
+                    <strong>File:</strong> MMTSA @ KDD 2025_V2_online.pdf | 
                     <strong>Size:</strong> ~13 MB | 
                     <strong>Last updated:</strong> August 2025
                 </p>
@@ -1098,11 +1098,11 @@
     <!-- PDF Viewer JavaScript -->
     <script>
     // PDF Viewer JavaScript
-    let totalPages = 97;
+    let totalPages = 128;
 
     function onPDFLoad() {
         // This function will be called when PDF loads
-        totalPages = 97; // Set this to your actual PDF page count
+        totalPages = 128; // Set this to your actual PDF page count
         updatePageInfo();
     }
 
@@ -1112,7 +1112,7 @@
 
     function downloadPDF() {
         const link = document.createElement('a');
-        link.href = './files/MMTSA @ KDD 2025.pdf';
+        link.href = './files/MMTSA @ KDD 2025_V2_online.pdf';
         link.download = 'MMTSA_KDD25_Tutorial.pdf';
         document.body.appendChild(link);
         link.click();
